@@ -2,6 +2,32 @@
 
 Find foreign exchange rates issued by [Her Majesty's Revenue and Customs][hmrc-url] in JSON format.
 
+## Usage
+
+```sh
+# Get the latest rates
+$ curl -X GET https://matchilling.github.io/hmrc-exchange-rates/rate/latest.json
+{
+  "base": "GBP",
+  "period": {
+    "start": "2020-01-01",
+    "end": "2020-01-31"
+  },
+  "rates": {
+    "AED": "4.8012",
+    "ALL": "143.53",
+    "AMD": "624.19",
+    "AOA": "598.72",
+    "ARS": "78.18",
+    "AUD": "1.905",
+    ...
+  }
+}
+
+# Get rates by month (e.g. March 2020)
+$ curl -X GET https://matchilling.github.io/hmrc-exchange-rates/rate/2020/03.json
+```
+
 ## 💷 Details
 
 You should use these exchanges rates if you have to convert any foreign currency to sterling for customs and VAT purposes.
