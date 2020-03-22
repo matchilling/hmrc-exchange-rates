@@ -32,4 +32,4 @@ You should only use the EU rate for conversion of invoices drawn in the euro. Do
 published for agricultural levy purposes or the bit error rate (BER) daily rate set to help payment of taxes in the euro.
 
 <!-- MARKDOWN LINKS -->
-[circleci-url]: https://www.gov.uk/government/organisations/hm-revenue-customs
+[hmrc-url]: https://www.gov.uk/government/organisations/hm-revenue-customs
