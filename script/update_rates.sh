@@ -52,4 +52,13 @@ fi
 
 curl --silent -X GET "${HMRC_URL}" | "${SCRIPT_DIR}/to_json.sh" > "$TARGET_FILE"
 
+# Update latest rates
 cp "${TARGET_FILE}" "$RATE_DIR/latest.json"
+
+# Update README.md
+readonly README=$(cat "$SCRIPT_DIR/README_TEMPLATE.md")
+readonly LATEST_M=$(date -v+1m -j -f '%Y-%m-%d' "${LATEST_START_DATE}" "+%b")
+echo "${README}" | \
+  sed 's/###LATEST_M_YYYY###/'"${LATEST_M} ${NEXT_YYYY}"'/g' | \
+  sed 's/###LAST_UPDATE###/'"$(date -u)"'/g' \
+  > "$PROJECT_DIR/README.md"
