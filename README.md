@@ -1,6 +1,9 @@
 # 🇬🇧 HMRC Exchange Rates API for Customs & VAT
 
-Find foreign exchange rates issued by [Her Majesty's Revenue and Customs][hmrc-url] in JSON format.
+Find foreign exchange rates issued by [Her Majesty's Revenue and Customs][hmrc-url]
+in JSON format from __2015-01__ till __2020-03__.
+
+__Last update: 2020-03-23 14:09:24__
 
 ## Usage
 
