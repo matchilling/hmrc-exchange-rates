@@ -3,7 +3,7 @@
 from datetime import datetime
 from json import dumps
 from re import findall
-from sys import stdin
+from sys import stdin, stdout
 from xml.etree import ElementTree
 
 
@@ -46,9 +46,6 @@ for exchange_rate in root.iter('exchangeRate'):
     rate = exchange_rate.find('rateNew').text
     response.add_rate(Rate(code, rate))
 
-print dumps(
-    response,
-    default=lambda o: o.__dict__,
-    indent=2,
-    sort_keys=True
+stdout.write(
+    dumps(response, default=lambda o: o.__dict__, indent=2, sort_keys=True)
 )

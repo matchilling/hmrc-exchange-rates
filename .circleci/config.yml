@@ -1,0 +1,52 @@
+---
+version: 2.1
+
+executors:
+  python-executor:
+    docker:
+      - image: circleci/python:latest
+    working_directory: "~/project"
+
+jobs:
+  update_rates:
+    executor: python-executor
+    steps:
+      - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "b9:a5:a3:6c:b3:0d:5c:90:8f:30:1a:1f:ec:76:d8:8e"
+      - run:
+          name: Configure git
+          command: |
+            git config user.email "ci-build@matchilling.com"
+            git config user.name "ci-build"
+      - run:
+          name: Update rates
+          command: |
+            ./script/update.sh
+      - run:
+          name: Push changes
+          command: |
+            git add .
+            git commit --message='[skip ci] Automatic rates update'
+            git push
+
+workflows:
+  version: 2
+
+  update_rates:
+    jobs:
+      - update_rates:
+          filters:
+            branches:
+              only: master
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only: master
+    jobs:
+      - update_rates

@@ -1,9 +1,10 @@
-#!/usr/bin/env sh
-set -eou pipefail
+#!/usr/bin/env bash
+set -eu pipefail
 
 readonly SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 readonly PROJECT_DIR=$(cd "${SCRIPT_DIR}/.." && pwd)
 readonly RATE_DIR=$(cd "${PROJECT_DIR}/rate" && pwd)
+readonly README=$(cat "$SCRIPT_DIR/README_TEMPLATE.md")
 
 command -v python version >/dev/null 2>&1 || {
     echo >&2 "Please install python in your path before continuing."
@@ -33,14 +34,22 @@ read_json() {
     fi;
 }
 
-readonly LATEST_START_DATE=$(read_json "$RATE_DIR/latest.json" "start")
-readonly NEXT_YYYY=$(date -v+1m -j -f '%Y-%m-%d' "${LATEST_START_DATE}" "+%Y")
-readonly NEXT_MM=$(date -v+1m -j -f '%Y-%m-%d' "${LATEST_START_DATE}" "+%m")
+readonly LATEST_START_DATE=$(date -d $(read_json "$RATE_DIR/latest.json" "start"))
+readonly NEXT_YYYY=$(date -d "${LATEST_START_DATE} +1 month" "+%Y")
+readonly NEXT_MM=$(date -d "${LATEST_START_DATE} +1 month" "+%m")
 readonly HMRC_URL="http://www.hmrc.gov.uk/softwaredevelopers/rates/exrates-monthly-${NEXT_MM}${NEXT_YYYY: -2}.xml"
 
 readonly STATUS_CODE=$(curl --silent -LI -X OPTIONS "${HMRC_URL}" -o /dev/null -w '%{http_code}')
 if [ "$STATUS_CODE" != '200' ] ; then
-    echo "No rates yet available for ${NEXT_YYYY}-${NEXT_MM}."
+    echo "No rates for ${NEXT_YYYY}-${NEXT_MM} available yet."
+
+    readonly LATEST_YYYY=$(date -d "${LATEST_START_DATE}" "+%Y")
+    readonly LATEST_M=$(date -d "${LATEST_START_DATE}" "+%b")
+    echo "${README}" | \
+      sed 's/###LATEST_M_YYYY###/'"${LATEST_M} ${LATEST_YYYY}"'/g' | \
+      sed 's/###LAST_UPDATE###/'"$(date -u)"'/g' \
+      > "$PROJECT_DIR/README.md"
+
     exit 0;
 fi
 
@@ -52,12 +61,9 @@ fi
 
 curl --silent -X GET "${HMRC_URL}" | "${SCRIPT_DIR}/to_json.sh" > "$TARGET_FILE"
 
-# Update latest rates
 cp "${TARGET_FILE}" "$RATE_DIR/latest.json"
 
-# Update README.md
-readonly README=$(cat "$SCRIPT_DIR/README_TEMPLATE.md")
-readonly LATEST_M=$(date -v+1m -j -f '%Y-%m-%d' "${LATEST_START_DATE}" "+%b")
+readonly LATEST_M=$(date -d "${LATEST_START_DATE} +1 month" "+%b")
 echo "${README}" | \
   sed 's/###LATEST_M_YYYY###/'"${LATEST_M} ${NEXT_YYYY}"'/g' | \
   sed 's/###LAST_UPDATE###/'"$(date -u)"'/g' \
