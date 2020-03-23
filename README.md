@@ -9,7 +9,7 @@ __Last update: Mon 23 Mar 2020 15:05:51 UTC__
 
 ```sh
 # Get the latest rates
-$ curl -X GET https://matchilling.github.io/hmrc-exchange-rates/rate/latest.json
+$ curl -X GET https://hmrc.matchilling.com/rate/latest.json
 {
   "base": "GBP",
   "period": {
@@ -28,7 +28,7 @@ $ curl -X GET https://matchilling.github.io/hmrc-exchange-rates/rate/latest.json
 }
 
 # Get rates by month (e.g. March 2020)
-$ curl -X GET https://matchilling.github.io/hmrc-exchange-rates/rate/2020/03.json
+$ curl -X GET https://hmrc.matchilling.com/rate/2020/03.json
 ```
 
 ## 💷 Details
