@@ -27,7 +27,7 @@ jobs:
       - run:
           name: Push changes
           command: |
-            git add .
+            git add README.md rate/\*.json
             git commit --message='[skip ci] Automatic rates update'
             git push
 
