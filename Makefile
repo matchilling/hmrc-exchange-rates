@@ -16,7 +16,7 @@ build: ## Build the container
 		--file Dockerfile \
 		--tag "${STACK_SLUG}:${STACK_VERSION}" .
 
-run: ## Run the container in an interactive shell
+run:   ## Run the container in an interactive shell
 	@docker run \
 		--rm \
 		-it \
