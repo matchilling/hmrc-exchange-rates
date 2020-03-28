@@ -59,7 +59,7 @@ if [ ! -d "/path/to/dir" ]; then
     mkdir -p "${TARGET_DIR}"
 fi
 
-curl --silent -X GET "${HMRC_URL}" | "${SCRIPT_DIR}/to_json.sh" > "$TARGET_FILE"
+curl --silent -X GET "${HMRC_URL}" | "${SCRIPT_DIR}/converter/from_xml.sh" > "$TARGET_FILE"
 
 cp "${TARGET_FILE}" "$RATE_DIR/latest.json"
 

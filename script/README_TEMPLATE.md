@@ -4,7 +4,7 @@
 *** ----------------------------------------------------------------
 -->
 
-# 🇬🇧 HMRC Exchange Rates API for Customs & VAT [![CircleCI](https://circleci.com/gh/matchilling/hmrc-exchange-rates.svg?style=svg)](https://circleci.com/gh/matchilling/hmrc-exchange-rates)
+# 🇬🇧 HMRC Exchange Rates API for Customs & VAT [![CircleCI](https://circleci.com/gh/matchilling/hmrc-exchange-rates.svg?style=svg)](circleci-url)
 
 Find foreign exchange rates issued by [Her Majesty's Revenue and Customs][hmrc-url]
 in JSON format from __Jan 2015__ till __###LATEST_M_YYYY###__.
@@ -66,5 +66,24 @@ The EU rate includes the following countries:
 You should only use the EU rate for conversion of invoices drawn in the euro. Do not confuse it with the euro rate
 published for agricultural levy purposes or the bit error rate (BER) daily rate set to help payment of taxes in the euro.
 
+## 🛠 CSV and XML converter
+
+HMRC publishes new monthly exchange rates in [CSV](hmrc-csv-rates) and [XML](hmrc-xml-rates) format on its website during
+the last week of the month. The CSV version is usually a few days before the XML one available.
+
+Unfortunately only the XML version can be retrieved programmatically as the URI to CSV contains a unique file descriptor
+which obviously can not be predicted. Therefore the XML converter is being used by default.
+
+However, you can always manually add new rates to this repository using this CSV converter.
+
+```sh
+$ curl --silent https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/874383/exrates-monthly-0420.csv | \
+    ./script/converter/from_csv.sh \
+    > rate/2020/04.json
+```
+
 <!-- MARKDOWN LINKS -->
+[circleci-url]: https://circleci.com/gh/matchilling/hmrc-exchange-rates
 [hmrc-url]: https://www.gov.uk/government/organisations/hm-revenue-customs
+[hmrc-csv-rates]: https://www.gov.uk/government/publications/hmrc-exchange-rates-for-2020-monthly
+[hmrc-xml-rates]: http://www.hmrc.gov.uk/softwaredevelopers/2020-exrates.html
