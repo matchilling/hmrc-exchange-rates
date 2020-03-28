@@ -9,7 +9,7 @@
 Find foreign exchange rates issued by [Her Majesty's Revenue and Customs][hmrc-url]
 in JSON format from __Jan 2015__ till __Mar 2020__.
 
-__Last update: Sat Mar 28 10:04:02 UTC 2020__
+__Last update: Sat Mar 28 10:08:40 UTC 2020__
 
 ## Usage
 
@@ -74,7 +74,7 @@ the last week of the month. The CSV version is usually a few days before the XML
 Unfortunately only the XML version can be retrieved programmatically as the URI to CSV contains a unique file descriptor
 which obviously can not be predicted. Therefore the XML converter is being used by default.
 
-However, you can always manually add new rates to this repository using (this CSV converter)[script/converter/from_csv.sh].
+However, you can always manually add new rates to this repository using [this CSV converter](./script/converter/from_csv.sh).
 
 ```sh
 $ curl --silent https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/874383/exrates-monthly-0420.csv | \
