@@ -4,12 +4,12 @@
 *** ----------------------------------------------------------------
 -->
 
-# 🇬🇧 HMRC Exchange Rates API for Customs & VAT [![CircleCI](https://circleci.com/gh/matchilling/hmrc-exchange-rates.svg?style=svg)](circleci-url)
+# 🇬🇧 HMRC Exchange Rates API for Customs & VAT [![CircleCI](https://circleci.com/gh/matchilling/hmrc-exchange-rates.svg?style=svg)](https://circleci.com/gh/matchilling/hmrc-exchange-rates)
 
 Find foreign exchange rates issued by [Her Majesty's Revenue and Customs][hmrc-url]
 in JSON format from __Jan 2015__ till __Mar 2020__.
 
-__Last update: Sat Mar 28 09:54:08 UTC 2020__
+__Last update: Sat Mar 28 10:04:02 UTC 2020__
 
 ## Usage
 
@@ -68,13 +68,13 @@ published for agricultural levy purposes or the bit error rate (BER) daily rate 
 
 ## 🛠 CSV and XML converter
 
-HMRC publishes new monthly exchange rates in [CSV](hmrc-csv-rates) and [XML](hmrc-xml-rates) format on its website during
+HMRC publishes new monthly exchange rates in [CSV][hmrc-csv-rates] and [XML][hmrc-xml-rates] format on its website during
 the last week of the month. The CSV version is usually a few days before the XML one available.
 
 Unfortunately only the XML version can be retrieved programmatically as the URI to CSV contains a unique file descriptor
 which obviously can not be predicted. Therefore the XML converter is being used by default.
 
-However, you can always manually add new rates to this repository using this CSV converter.
+However, you can always manually add new rates to this repository using (this CSV converter)[script/converter/from_csv.sh].
 
 ```sh
 $ curl --silent https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/874383/exrates-monthly-0420.csv | \
@@ -83,7 +83,6 @@ $ curl --silent https://assets.publishing.service.gov.uk/government/uploads/syst
 ```
 
 <!-- MARKDOWN LINKS -->
-[circleci-url]: https://circleci.com/gh/matchilling/hmrc-exchange-rates
 [hmrc-url]: https://www.gov.uk/government/organisations/hm-revenue-customs
 [hmrc-csv-rates]: https://www.gov.uk/government/publications/hmrc-exchange-rates-for-2020-monthly
 [hmrc-xml-rates]: http://www.hmrc.gov.uk/softwaredevelopers/2020-exrates.html
