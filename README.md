@@ -7,9 +7,9 @@
 # 🇬🇧 HMRC Exchange Rates API for Customs & VAT [![CircleCI](https://circleci.com/gh/matchilling/hmrc-exchange-rates.svg?style=svg)](https://circleci.com/gh/matchilling/hmrc-exchange-rates)
 
 Find foreign exchange rates issued by [Her Majesty's Revenue and Customs][hmrc-url]
-in JSON format from __Jan 2015__ till __Dec 2020__.
+in JSON format from __Jan 2015__ till __Jan 2021__.
 
-__Last update: Mon Dec 21 00:03:20 UTC 2020__
+__Last update: Tue Dec 22 00:03:39 UTC 2020__
 
 ## Usage
 
