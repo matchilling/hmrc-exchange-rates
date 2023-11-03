@@ -6,7 +6,7 @@ readonly PROJECT_DIR=$(cd "${SCRIPT_DIR}/.." && pwd)
 readonly RATE_DIR=$(cd "${PROJECT_DIR}/rate" && pwd)
 readonly README=$(cat "$SCRIPT_DIR/README_TEMPLATE.md")
 
-command -v python version >/dev/null 2>&1 || {
+command -v python3 version >/dev/null 2>&1 || {
     echo >&2 "Please install python in your path before continuing."
     exit 1
 }
@@ -43,10 +43,10 @@ readonly HMRC_URL_01="https://www.trade-tariff.service.gov.uk/api/v2/exchange_ra
 readonly HMRC_URL_02="https://www.trade-tariff.service.gov.uk/api/v2/exchange_rates/files/monthly_xml_${NEXT_YYYY}-${NEXT_MM}.XML"
 HMRC_URL="${HMRC_URL_01}"
 
-readonly STATUS_CODE_01=$(curl --silent -LI -X OPTIONS "${HMRC_URL_01}" -o /dev/null -w '%{http_code}')
+readonly STATUS_CODE_01=$(curl --silent -LI -X GET "${HMRC_URL_01}" -o /dev/null -w '%{http_code}')
 if [ "$STATUS_CODE_01" != '200' ]; then
 
-    readonly STATUS_CODE_02=$(curl --silent -LI -X OPTIONS "${HMRC_URL_02}" -o /dev/null -w '%{http_code}')
+    readonly STATUS_CODE_02=$(curl --silent -LI -X GET "${HMRC_URL_02}" -o /dev/null -w '%{http_code}')
     if [ "$STATUS_CODE_02" != '200' ]
         then
             echo "No rates for ${NEXT_YYYY}-${NEXT_MM} available yet."

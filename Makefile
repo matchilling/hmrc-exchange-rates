@@ -20,5 +20,5 @@ run:   ## Run the container in an interactive shell
 	@docker run \
 		--rm \
 		-it \
-		--volume ${PWD}:/home/circleci/project \
+		--volume ${PWD}:/app \
 		"${STACK_SLUG}:${STACK_VERSION}" bash
