@@ -1,0 +1,31 @@
+# GitHub Actions documentation
+# => https://docs.github.com/en/actions
+name: Update Rates Cron Job
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  update-rates:
+    runs-on: [ ubuntu-latest ]
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Git
+        run: |
+          git config user.email "ci-build@matchilling.com"
+          git config user.name "ci-build"
+          git config --list
+
+      - uses: actions/setup-python@v4
+
+      - name: Update Rates
+        run: ./script/update.sh
+
+      - name: Push changes
+        run: |
+          git status
+          git add README.md rate/\*.json
+          git commit --message='[skip ci] Automatic rates update'
+          git push
