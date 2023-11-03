@@ -39,8 +39,8 @@ readonly NEXT_YYYY=$(date -d "${LATEST_START_DATE} +1 month" "+%Y")
 readonly NEXT_MM=$(date -d "${LATEST_START_DATE} +1 month" "+%m")
 
 # HMRC breaks its URL scheme sometimes 🤷‍, so we're trying different URLS
-readonly HMRC_URL_01="http://www.hmrc.gov.uk/softwaredevelopers/rates/exrates-monthly-${NEXT_MM}${NEXT_YYYY: -2}.xml"
-readonly HMRC_URL_02="http://www.hmrc.gov.uk/softwaredevelopers/rates/exrates-monthly-${NEXT_MM}${NEXT_YYYY: -2}.XML"
+readonly HMRC_URL_01="https://www.trade-tariff.service.gov.uk/api/v2/exchange_rates/files/monthly_xml_${NEXT_YYYY}-${NEXT_MM}.xml"
+readonly HMRC_URL_02="https://www.trade-tariff.service.gov.uk/api/v2/exchange_rates/files/monthly_xml_${NEXT_YYYY}-${NEXT_MM}.XML"
 HMRC_URL="${HMRC_URL_01}"
 
 readonly STATUS_CODE_01=$(curl --silent -LI -X OPTIONS "${HMRC_URL_01}" -o /dev/null -w '%{http_code}')
