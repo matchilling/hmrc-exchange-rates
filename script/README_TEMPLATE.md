@@ -4,8 +4,7 @@
 *** ----------------------------------------------------------------
 -->
 
-# 🇬🇧 HMRC Exchange Rates API for Customs & VAT [![CircleCI](https://circleci.com/gh/matchilling/hmrc-exchange-rates.svg?style=svg)](https://circleci.com/gh/matchilling/hmrc-exchange-rates)
-
+# 🇬🇧 HMRC Exchange Rates API for Customs & VAT [![Update Rates Cron Job](https://github.com/matchilling/hmrc-exchange-rates/actions/workflows/update_rates_cron_job.yml/badge.svg)](https://github.com/matchilling/hmrc-exchange-rates/actions/workflows/update_rates_cron_job.yml)
 Find foreign exchange rates issued by [His Majesty's Revenue and Customs][hmrc-url]
 in JSON format from __Jan 2015__ till __###LATEST_M_YYYY###__.
 
