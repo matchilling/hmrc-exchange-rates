@@ -8,7 +8,7 @@
 Find foreign exchange rates issued by [His Majesty's Revenue and Customs][hmrc-url]
 in JSON format from __Jan 2015__ till __Jan 2025__.
 
-__Last update: Sat Jan 11 03:10:25 UTC 2025__
+__Last update: Sun Jan 12 03:15:03 UTC 2025__
 
 ## Usage
 
