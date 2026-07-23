@@ -6,9 +6,9 @@
 
 # 🇬🇧 HMRC Exchange Rates API for Customs & VAT [![Update Rates Cron Job](https://github.com/matchilling/hmrc-exchange-rates/actions/workflows/update_rates_cron_job.yml/badge.svg)](https://github.com/matchilling/hmrc-exchange-rates/actions/workflows/update_rates_cron_job.yml)
 Find foreign exchange rates issued by [His Majesty's Revenue and Customs][hmrc-url]
-in JSON format from __Jan 2015__ till __Jul 2026__.
+in JSON format from __Jan 2015__ till __Aug 2026__.
 
-__Last update: Wed Jul 22 04:08:05 UTC 2026__
+__Last update: Thu Jul 23 04:06:29 UTC 2026__
 
 ## Usage
 
